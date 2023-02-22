@@ -1,0 +1,142 @@
+@use 'colors' as c;
+
+.main{
+	position: relative;
+	
+}
+
+
+.results {
+	margin-top: 30px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 2em;
+	&__title {
+		align-self: flex-start;
+		margin-bottom: 10px;
+	}
+	&__box {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: flex-start;
+		width: 100%;
+		min-height: 50vh;
+	
+	}
+}
+.result {
+	cursor: pointer;
+	transition: transform 0.4s;
+	&:hover {
+		transform: scale(1.05);
+	}
+}
+.result,
+.recipe {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-top: 20px;
+	width: 100%;
+	max-width: 400px;
+	background-color: #fff;
+	min-height: 60px;
+	border-radius: 12px;
+	border: 1px solid c.$blue;
+	overflow: hidden;
+
+	&__img {
+		height: 60px;
+		object-fit: cover;
+		border-radius: 12px 0 0 12px;
+	}
+	&__box-left {
+		display: flex;
+	}
+	
+	&__box-text {
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+		margin-left: 10px;
+	}
+	&__title {
+		font-size: 1.4rem;
+	}
+	&__description {
+		font-size: 1.2rem;
+		margin-top: 3px;
+	}
+	&__btn {
+		margin-right: 15px;
+	}
+}
+
+@media (min-width: 768px) {
+	.results {
+		&__box {
+			flex-direction: row;
+			align-content: flex-start;
+			justify-content: center;
+			flex-wrap: wrap;
+			gap: 30px;
+			
+		}
+	}
+	.result {
+		flex-direction: column;
+		width: 200px;
+		height: 200px;
+		z-index: 100;
+		&__title {
+			font-size: 1.6rem;
+		}
+		&__description {
+			font-size: 1.5rem;
+			margin-top: 5px;
+		}
+
+		&__img {
+			height: 100px;
+			width: 200px;
+			border-radius: 12px 12px 0 0;
+		}
+		&__box-left {
+			flex-direction: column;
+		}
+		&__box-text {
+			margin-left: 0;
+			margin-top: 10px;
+			align-items: center;
+			justify-content: center;
+		}
+		&__btn {
+			margin-right: 0;
+			margin-bottom: 5px;
+		}
+	}
+}
+@media (min-width: 1200px) {
+	.result {
+		width: 250px;
+
+		&__img {
+			width: 250px;
+		}
+	}
+}
+@media (min-width: 1400px) {
+	.result {
+		width: 250px;
+		height: 225px;
+
+		&__img {
+			width: 250px;
+			height: 125px;
+		}
+	}
+}

@@ -1,0 +1,17 @@
+@use 'colors' as c;
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+body {
+	background-color: c.$fadedWhite;
+	min-height: 100vh;
+	font-family: 'Roboto', sans-serif;
+	overflow-x: hidden;
+}
+html {
+	font-size: 62.5%;
+}

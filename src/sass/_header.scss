@@ -1,0 +1,133 @@
+@use 'colors' as c;
+
+.header {
+	height: 25vh;
+	width: 100vw;
+	.hero {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		background-image: url('../img/hero-big3.jpg');
+		background-size: cover;
+		background-position: 50% 50%;
+		box-shadow: 0 0 5px black;
+		&__shadow {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0, 32, 77, 0.16);
+		}
+		&__text-box {
+			display: flex;
+			flex-direction: column;
+			position: absolute;
+
+			top: 50%;
+			left: 30%;
+			transform: translate(-30%, -50%);
+		}
+		&__title,
+		&__text {
+			letter-spacing: 4px;
+			color: c.$white;
+			text-shadow: 0 0 5px c.$black;
+		}
+		&__title {
+			text-transform: uppercase;
+			font-size: 2rem;
+			font-weight: 700;
+		}
+		&__text {
+			font-weight: 300;
+			margin-top: 5px;
+			font-size: 1.7rem;
+		}
+		&__inputs {
+			display: flex;
+			position: absolute;
+			bottom: -20px;
+			left: 50%;
+			transform: translateX(-50%);
+			&::after {
+				position: absolute;
+				content: '	';
+				width: 98%;
+				height: 100%;
+				border-radius: 15px;
+				box-shadow: 0 0 5px black;
+			}
+		}
+		.sendining-input {
+			border-radius: 0 15px 15px 0;
+			position: relative;
+			left: -5px;
+			background-color: c.$blue;
+			color: c.$white;
+			transition: transform 0.3s;
+			cursor: pointer;
+			&:hover {
+				transform: scale(1.05);
+			}
+		}
+		.searching-input {
+			width: 200px;
+			border-radius: 15px 0 0 15px;
+		}
+	}
+}
+@media (min-width: 576px) {
+	.header {
+		.hero {
+			.sendining-input {
+				height: 30px;
+			}
+			.searching-input {
+				width: 350px;
+				height: 30px;
+			}
+		}
+	}
+}
+
+@media (min-width: 768px) {
+	.header {
+		.hero {
+			&__title {
+				font-size: 3.5rem;
+			}
+			&__text {
+				font-size: 2.5rem;
+			}
+			&__inputs {
+				&::after {
+					width: 99%;
+				}
+			}
+			.sendining-input {
+				height: 40px;
+			}
+			.searching-input {
+				width: 500px;
+				height: 40px;
+			}
+		}
+	}
+}
+@media (min-width: 992px) {
+	.header {
+		.hero {
+			.searching-input {
+				width: 600px;
+			}
+		}
+	}
+}
+@media (min-width: 1200px) {
+	.header {
+		.hero {
+			.searching-input {
+				width: 650px;
+			}
+		}
+	}
+}
