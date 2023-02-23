@@ -1,12 +1,17 @@
 @use 'colors' as c;
 .recipe-info {
+	display: none;
 	position: fixed;
 	top: 0;
 	left: 0;
 	bottom: 0;
 	right: 0;
-	background-color: c.$fadedWhite;
+	background-color: c.$white;
 	z-index: 100;
+	overflow-y: auto;
+	&--active{
+		display: block;
+	}
 	&__top {
 		position: relative;
 		width: 100%;
@@ -22,10 +27,10 @@
 		text-shadow: 0 0 5px black;
 		padding: 0.4em 1em;
 		display: flex;
-		align-items: flex-end;
+		align-items: center;
 		justify-content: center;
 		color: c.$white;
-		font-size: 1.5rem;
+		font-size: 1.4rem;
 		position: absolute;
 		top: 0;
 		width: 100%;
@@ -33,7 +38,7 @@
 		background-color: #00000028;
 	}
 	&__details {
-		padding: 0 2em;
+		padding: 2em;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
@@ -61,27 +66,102 @@
 	&__btn {
 		font-size: 1.5rem;
 	}
-	&__ingredients {
-		padding: 2em;
-	}
+
 	&__bottom {
-		padding: 0 2em;
+		padding: 2em;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+		width: 100%;
+		text-align: center;
+	}
+	&__text {
+		font-size: 1.3rem;
+		margin-top: 20px;
+		span {
+			font-weight: bold;
+		}
+	}
+	&__go-to {
+		display: inline-block;
+		margin-top: 20px;
+		background-color: c.$blue;
+		padding: 0.8em 1.2em;
+		font-size: 1.3rem;
+		color: c.$white;
+		border-radius: 12px;
+		text-decoration: none;
+		transition: transform 0.4s;
+		&:hover {
+			transform: scale(1.05);
+		}
+	}
+	&__ingredients-box {
+		margin-top: 20px;
+		font-size: 1.3rem;
+		line-height: 1.4;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+
+		i {
+			margin-right: 4px;
+			color: c.$blue;
+		}
+	}
+
+	&__ingredient-list {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 2.5rem 3rem;
+		list-style: none;
+	}
+
+	&__ingredient {
+		display: flex;
+	}
+
+	&__quantity {
+		margin-right: 0.5rem;
 	}
 }
 
 @media (min-width: 768px) {
 	.recipe-info {
+		&__shadow{
+			font-size: 2.5rem;
+		}
 		&__details {
+			min-height: 100px;
 			padding: 0 2em;
-			justify-content: space-around;
+			justify-content: space-evenly;
 		}
 		&__time-box,
 		&__servings-box,
 		&__btn {
-			font-size: 2rem;
+			font-size: 1.7rem;
 		}
 		&__ingredients {
 			padding: 4em 2em;
+		}
+		&__bottom {
+			padding: 4em;
+		}
+		&__text {
+			font-size: 1.7rem;
+			margin-top: 40px;
+		}
+		&__go-to {
+			margin-top: 40px;
+			font-size: 1.5rem;
+		}
+		&__ingredients-box {
+			margin-top: 40px;
+			font-size: 1.7rem;
+		}
+		&__body-title {
+			font-size: 2.2rem;
 		}
 	}
 	.bgc-color {

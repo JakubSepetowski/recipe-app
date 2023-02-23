@@ -59,7 +59,6 @@
 		z-index: 500;
 		box-shadow: 0 0 5px black;
 		transition: transform 0.8s;
-		
 
 		&--active {
 			transform: translateX(0);
@@ -67,7 +66,7 @@
 		&__box {
 			padding: 2em;
 			width: 100%;
-			overflow-y:scroll
+			overflow-y: auto;
 		}
 		&__top {
 			display: flex;
