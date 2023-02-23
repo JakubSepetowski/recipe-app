@@ -9,7 +9,7 @@
 	background-color: c.$white;
 	z-index: 100;
 	overflow-y: auto;
-	&--active{
+	&--active {
 		display: block;
 	}
 	&__top {
@@ -125,11 +125,12 @@
 	&__quantity {
 		margin-right: 0.5rem;
 	}
+	
 }
 
 @media (min-width: 768px) {
 	.recipe-info {
-		&__shadow{
+		&__shadow {
 			font-size: 2.5rem;
 		}
 		&__details {
@@ -166,5 +167,14 @@
 	}
 	.bgc-color {
 		padding: 4em 0;
+	}
+}
+
+@keyframes rotate {
+	from {
+		transform: rotate(0);
+	}
+	to {
+		transform: rotate(360deg);
 	}
 }

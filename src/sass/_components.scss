@@ -45,6 +45,15 @@
 		background-color: c.$fadedWhite;
 	}
 }
-.block-scrolling {
-	overflow: hidden;
+
+.spinner-box {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+.spinner {
+	font-size: 4rem;
+	animation: rotate 2s infinite linear;
+	color: c.$blue;
 }
