@@ -10,6 +10,7 @@ import { recipeState } from './model';
 import { FORBIDDEN } from './config';
 import { fvaRecipesInfo } from './recipeView';
 
+
 const form = document.querySelector('.hero__inputs') as HTMLFormElement;
 const input = document.querySelector('.searching-input') as HTMLInputElement;
 const resultsBox = document.querySelector('.results__box') as HTMLDivElement;
@@ -56,6 +57,9 @@ const showRecipe = async (id: string | undefined) => {
 		fvaRecipesInfo.forEach((fav) => {
 			if (fav.id === id) isFav = true;
 		});
+
+	
+
 		recipeInfo.renderResults(recipeState, isFav);
 	} catch (err) {
 		if (typeof err === 'string') resultError.textContent = err;

@@ -18,11 +18,27 @@ class Results {
                 <p class="result__description">${recipe.publisher}</p>
               </div>
             </div>
+            <div class="result__icon-box regular">
             <i  class="fa-regular fa-heart result__icon-info"></i>
+            </div>
         </div>
         `;
 
 		this.parentElement.insertAdjacentHTML('beforeend', markup);
+	}
+	changeIcon(id: string) {
+		console.log(id);
+		const result = document.querySelector(`[data-id='${id}']`)!;
+		const iconBox = result.querySelector('.result__icon-box')!;
+		iconBox.innerHTML = '';
+		if (iconBox?.classList.contains('regular')) {
+			iconBox.innerHTML = ` <i  class="fa-solid fa-heart result__icon-info"></i>`;
+      iconBox.classList.remove("regular")
+		} else {
+      console.log("a");
+			iconBox.innerHTML = ` <i  class="fa-regular fa-heart result__icon-info"></i>`;
+      iconBox.classList.add("regular")
+		}
 	}
 }
 

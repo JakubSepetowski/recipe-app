@@ -7,6 +7,7 @@ export type Recipe = {
 	servings?: number;
 	source_url?: string;
 	ingredients?: Ingredient[];
+	isFav?: boolean;
 };
 
 export type Data = {
@@ -20,6 +21,6 @@ export type Data = {
 
 type Ingredient = {
 	quantity: number;
-	unit: string ;
+	unit: string;
 	description: string;
 };

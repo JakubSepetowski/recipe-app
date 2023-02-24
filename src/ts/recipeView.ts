@@ -1,8 +1,9 @@
 import { Recipe } from './types';
 import { Fav } from './favView';
+import { result } from './resultsView';
 
 export const fvaRecipesInfo: Recipe[] = [];
-
+export let test = false;
 class RecipeInfo {
 	private parentElement;
 
@@ -96,6 +97,7 @@ class RecipeInfo {
 	handleFav(recipe: Recipe, isFav: boolean) {
 		const saveBtn = document.querySelector('.recipe-info__btn') as HTMLButtonElement;
 		saveBtn.addEventListener('click', () => {
+			result.changeIcon(recipe.id);
 			if (!isFav) {
 				saveBtn.innerHTML = `<i class="fa-solid fa-heart"></i>`;
 
@@ -104,6 +106,7 @@ class RecipeInfo {
 					image_url: recipe.image_url,
 					title: recipe.title,
 					publisher: recipe.publisher,
+					isFav: !isFav,
 				};
 
 				fvaRecipesInfo.push(rec);
