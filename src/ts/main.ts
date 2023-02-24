@@ -3,6 +3,7 @@ import { hanldeClick } from './nav';
 import { getRecipes } from './model';
 import { getRecipe } from './model';
 import { Spinner } from './spiner';
+import { recipeInfo } from './recipeView';
 
 const form = document.querySelector('.hero__inputs') as HTMLFormElement;
 const input = document.querySelector('.searching-input') as HTMLInputElement;
@@ -19,6 +20,10 @@ const getQuery = () => {
 const showRecipe = (id: string | undefined) => {
 	if (!id) return;
 	getRecipe(id);
+	recipeInfo.clear();
+	const spiner = new Spinner('recipe-info');
+	spiner.renderSpinner();
+	recipeInfo.showPanel();
 };
 
 form?.addEventListener('submit', (e) => {

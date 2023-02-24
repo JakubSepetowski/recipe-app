@@ -2,6 +2,7 @@ import { Recipe } from './types';
 
 class RecipeInfo {
 	private parentElement;
+
 	constructor() {
 		this.parentElement = document.querySelector('.recipe-info') as HTMLDivElement;
 	}
@@ -13,8 +14,8 @@ class RecipeInfo {
 		this.parentElement.style.display = 'block';
 	}
 	closePanel() {
-		document.body.style.overflow = 'auto';
-		this.parentElement.style.display = 'none';
+		document.body.style.overflowY = 'auto';
+		(document.querySelector('.recipe-info') as HTMLElement).style.display = 'none';
 	}
 	generateList(recipe: Recipe) {
 		const list = recipe.ingredients?.map((el) => {
@@ -37,10 +38,12 @@ class RecipeInfo {
         <div class="recipe-info__top">
         <img class="recipe-info__img" src="${recipe.image_url}" alt="${recipe.title}">
         <div class="recipe-info__shadow">
+        <button class="btn recipe-info__back"><i class="fa-solid fa-right-to-bracket"></i></button>
           <h2 class="recipe-info__title">${recipe.title}</h2>
         </div>
       </div>
       <div class="wrapper">
+      
         <div class="recipe-info__details">
           <div class="recipe-info__details-left">
             <div class="recipe-info__time-box">
@@ -53,7 +56,7 @@ class RecipeInfo {
             </div>
           </div>
           <div class="recipe-info__details-right">
-            <button class="recipe-info__btn btn btn--heart"><i class="fa-solid fa-heart"></i></button>
+            <button class="recipe-info__btn btn btn--heart"><i class="fa-regular fa-heart"></i></button>
           </div>
         </div>
       </div>
@@ -79,6 +82,8 @@ class RecipeInfo {
        `;
 
 		this.parentElement.insertAdjacentHTML('beforeend', markup);
+		const closeBtn = document.querySelector('.recipe-info__back') as HTMLButtonElement;
+		closeBtn.addEventListener('click', this.closePanel);
 	}
 }
 

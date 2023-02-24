@@ -37,12 +37,14 @@
 		height: 100%;
 		background-color: #00000028;
 	}
+	
 	&__details {
 		padding: 2em;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 		width: 100%;
+	
 	}
 	&__details-left {
 		display: flex;
@@ -99,8 +101,7 @@
 	}
 	&__ingredients-box {
 		margin-top: 20px;
-		font-size: 1.3rem;
-		line-height: 1.4;
+		font-size: 1.2rem;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -113,8 +114,8 @@
 
 	&__ingredient-list {
 		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 2.5rem 3rem;
+		grid-template-columns: 1fr;
+		gap: 2rem;
 		list-style: none;
 	}
 
@@ -125,7 +126,17 @@
 	&__quantity {
 		margin-right: 0.5rem;
 	}
-	
+
+	&__back {
+		position: absolute;
+		top: 20px;
+		left: 20px;
+		padding: 0.4em;
+		font-size: 2rem;
+		transform: rotate(180deg);
+		color: c.$white;
+		text-shadow: 0 0 05px c.$black;
+	}
 }
 
 @media (min-width: 768px) {
@@ -133,10 +144,11 @@
 		&__shadow {
 			font-size: 2.5rem;
 		}
+
 		&__details {
 			min-height: 100px;
 			padding: 0 2em;
-			justify-content: space-evenly;
+			justify-content: space-between;
 		}
 		&__time-box,
 		&__servings-box,
@@ -160,9 +172,20 @@
 		&__ingredients-box {
 			margin-top: 40px;
 			font-size: 1.7rem;
+			padding: 0 2em;
 		}
 		&__body-title {
 			font-size: 2.2rem;
+		}
+		&__ingredient-list {
+			display: grid;
+			grid-template-columns: 2fr 1fr;
+			max-width: 900px;
+			gap: 2.5rem 3rem;
+			list-style: none;
+		}
+		&__back {
+			font-size: 2.5rem;
 		}
 	}
 	.bgc-color {

@@ -18,7 +18,7 @@ class Results {
                 <p class="result__description">${recipe.publisher}</p>
               </div>
             </div>
-            <button class="result__btn btn btn--heart"><i class="fa-solid fa-heart"></i></button>
+            <i  class="fa-regular fa-heart result__icon-info"></i>
         </div>
         `;
 
