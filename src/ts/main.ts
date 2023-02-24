@@ -40,11 +40,11 @@ const getQuery = async () => {
 const showRecipe = async (id: string | undefined) => {
 	try {
 		if (!id) return;
-		await getRecipe(id);
 		recipeInfo.clear();
 		const spiner = new Spinner('recipe-info');
 		spiner.renderSpinner();
 		recipeInfo.showPanel();
+		await getRecipe(id);
 		recipeInfo.clear();
 		recipeInfo.renderResults(recipeState);
 	} catch (err) {
