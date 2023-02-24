@@ -4,27 +4,58 @@ import { getRecipes } from './model';
 import { getRecipe } from './model';
 import { Spinner } from './spiner';
 import { recipeInfo } from './recipeView';
+import { result } from './resultsView';
+import { resultsState } from './model';
+import { recipeState } from './model';
+import { FORBIDDEN } from './config';
 
 const form = document.querySelector('.hero__inputs') as HTMLFormElement;
 const input = document.querySelector('.searching-input') as HTMLInputElement;
 const resultsBox = document.querySelector('.results__box') as HTMLDivElement;
+const resultError = document.querySelector('.results__error') as HTMLTitleElement;
 
-const forbidden = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+const getQuery = async () => {
+	try {
+		resultError.textContent = '';
+		const spinner = new Spinner('results__box');
+		spinner.renderSpinner();
 
-const getQuery = () => {
-	const spinner = new Spinner('results__box');
-	spinner.renderSpinner();
-	getRecipes(input.value);
+		await getRecipes(input.value);
+		result.clear();
+
+		if (resultsState.length > 0) {
+			resultsState.forEach((res) => {
+				result.renderResults(res);
+			});
+		} else {
+			resultError.textContent = `No recipes found for ${input.value} :C`;
+		}
+	} catch (err) {
+		if (typeof err === 'string') resultError.textContent = err;
+		result.clear();
+	}
+	clearInput();
 };
 
-const showRecipe = (id: string | undefined) => {
-	if (!id) return;
-	getRecipe(id);
-	recipeInfo.clear();
-	const spiner = new Spinner('recipe-info');
-	spiner.renderSpinner();
-	recipeInfo.showPanel();
+const showRecipe = async (id: string | undefined) => {
+	try {
+		if (!id) return;
+		await getRecipe(id);
+		recipeInfo.clear();
+		const spiner = new Spinner('recipe-info');
+		spiner.renderSpinner();
+		recipeInfo.showPanel();
+		recipeInfo.clear();
+		recipeInfo.renderResults(recipeState);
+	} catch (err) {
+		if (typeof err === 'string') resultError.textContent = err;
+	}
 };
+const clearInput = () => {
+	input.value = '';
+};
+
+hanldeClick();
 
 form?.addEventListener('submit', (e) => {
 	e.preventDefault();
@@ -32,14 +63,12 @@ form?.addEventListener('submit', (e) => {
 });
 
 input.addEventListener('input', () => {
-	forbidden.forEach((el) => {
+	FORBIDDEN.forEach((el) => {
 		if (el.toString() === input.value.at(-1)) {
 			input.value = input.value.slice(0, -1);
 		}
 	});
 });
-
-hanldeClick();
 
 resultsBox.addEventListener('click', (e) => {
 	const result = (e.target as HTMLElement).closest('.result');
