@@ -12,11 +12,11 @@ export class Fav {
 		const markup = `
         <p class="favorites__text">Nothing here yet </p>
         `;
-        this.parentElement.insertAdjacentHTML('beforeend', markup);
+		this.parentElement.insertAdjacentHTML('beforeend', markup);
 	}
 	renderResults(recipe: Recipe) {
 		const markup = `
-        <div class="recipe">
+        <div data-id="${recipe.id}" class="recipe">
           <div class="recipe__box-left">
             <img class="recipe__img" src="${recipe.image_url}" alt="${recipe.title}">
             <div class="recipe__box-text">

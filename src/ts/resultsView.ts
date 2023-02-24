@@ -30,7 +30,6 @@ class Results {
 		console.log(id);
 		const result = document.querySelector(`[data-id='${id}']`)!;
 		const iconBox = result.querySelector('.result__icon-box')!;
-		iconBox.innerHTML = '';
 		if (iconBox?.classList.contains('regular')) {
 			iconBox.innerHTML = ` <i  class="fa-solid fa-heart result__icon-info"></i>`;
       iconBox.classList.remove("regular")

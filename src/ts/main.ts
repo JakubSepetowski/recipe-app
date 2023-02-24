@@ -9,7 +9,7 @@ import { resultsState } from './model';
 import { recipeState } from './model';
 import { FORBIDDEN } from './config';
 import { fvaRecipesInfo } from './recipeView';
-
+import { nav } from './nav';
 
 const form = document.querySelector('.hero__inputs') as HTMLFormElement;
 const input = document.querySelector('.searching-input') as HTMLInputElement;
@@ -18,6 +18,11 @@ const resultError = document.querySelector('.results__error') as HTMLTitleElemen
 
 const clearInput = () => {
 	input.value = '';
+};
+
+const getId = (e: MouseEvent, className: string) => {
+	const result = (e.target as HTMLElement).closest(`.${className}`);
+	if (result) showRecipe((result as HTMLDivElement).dataset.id);
 };
 
 const getQuery = async () => {
@@ -58,8 +63,6 @@ const showRecipe = async (id: string | undefined) => {
 			if (fav.id === id) isFav = true;
 		});
 
-	
-
 		recipeInfo.renderResults(recipeState, isFav);
 	} catch (err) {
 		if (typeof err === 'string') resultError.textContent = err;
@@ -82,6 +85,9 @@ input.addEventListener('input', () => {
 });
 
 resultsBox.addEventListener('click', (e) => {
-	const result = (e.target as HTMLElement).closest('.result');
-	if (result) showRecipe((result as HTMLDivElement).dataset.id);
+	getId(e, 'result');
+});
+
+(nav as HTMLDivElement).addEventListener('click', (e) => {
+	getId(e, 'recipe');
 });

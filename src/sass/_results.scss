@@ -11,7 +11,7 @@
 	justify-content: center;
 	flex-direction: column;
 	padding: 2em;
-	&__error{
+	&__error {
 		color: red;
 		margin-bottom: 10px;
 	}
@@ -24,13 +24,7 @@
 		min-height: 50vh;
 	}
 }
-.result {
-	cursor: pointer;
-	transition: transform 0.4s;
-	&:hover {
-		transform: scale(1.05);
-	}
-}
+
 .result,
 .recipe {
 	position: relative;
@@ -45,6 +39,11 @@
 	border-radius: 12px;
 	border: 1px solid c.$blue;
 	overflow: hidden;
+	cursor: pointer;
+	transition: transform 0.4s;
+	&:hover {
+		transform: scale(1.05);
+	}
 
 	&__img {
 		width: 80px;
@@ -118,7 +117,7 @@
 			justify-content: center;
 			text-align: center;
 		}
-		
+
 		&__icon-info {
 			font-size: 1.7rem;
 			margin-right: 0px;
