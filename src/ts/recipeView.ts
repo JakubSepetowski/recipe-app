@@ -1,4 +1,7 @@
 import { Recipe } from './types';
+import { Fav } from './favView';
+
+export const fvaRecipesInfo: Recipe[] = [];
 
 class RecipeInfo {
 	private parentElement;
@@ -17,7 +20,7 @@ class RecipeInfo {
 		document.body.style.overflowY = 'auto';
 		(document.querySelector('.recipe-info') as HTMLElement).style.display = 'none';
 	}
-	generateList(recipe: Recipe) {
+	private generateList(recipe: Recipe) {
 		const list = recipe.ingredients?.map((el) => {
 			return `
             <li class="recipe-info__ingredient">
@@ -32,7 +35,7 @@ class RecipeInfo {
 		});
 		return list?.join('');
 	}
-	renderResults(recipe: Recipe) {
+	renderResults(recipe: Recipe, isFav = false) {
 		const list = this.generateList(recipe);
 		const markup = `
         <div class="recipe-info__top">
@@ -56,7 +59,9 @@ class RecipeInfo {
             </div>
           </div>
           <div class="recipe-info__details-right">
-            <button class="recipe-info__btn btn btn--heart"><i class="fa-regular fa-heart"></i></button>
+            <button class="recipe-info__btn btn btn--heart"><i class="${
+							!isFav ? 'fa-regular' : 'fa-solid'
+						} fa-heart"></i></button>
           </div>
         </div>
       </div>
@@ -73,7 +78,9 @@ class RecipeInfo {
       <div class="recipe-info__bottom">
         <div class="wrapper">
           <h4 class="title title--blue recipe-info__body-title">How to cook it</h4>
-          <p class="recipe-info__text">This recipe was carefully designed and tested by <span>${recipe.publisher}</span>. Please
+          <p class="recipe-info__text">This recipe was carefully designed and tested by <span>${
+						recipe.publisher
+					}</span>. Please
             check out
             directions at their website.</p>
           <a class="recipe-info__go-to" target="_blank" href="${recipe.source_url}">Directions</a>
@@ -84,6 +91,43 @@ class RecipeInfo {
 		this.parentElement.insertAdjacentHTML('beforeend', markup);
 		const closeBtn = document.querySelector('.recipe-info__back') as HTMLButtonElement;
 		closeBtn.addEventListener('click', this.closePanel);
+		this.handleFav(recipe, isFav);
+	}
+	handleFav(recipe: Recipe, isFav: boolean) {
+		const saveBtn = document.querySelector('.recipe-info__btn') as HTMLButtonElement;
+		saveBtn.addEventListener('click', () => {
+			if (!isFav) {
+				saveBtn.innerHTML = `<i class="fa-solid fa-heart"></i>`;
+
+				const rec: Recipe = {
+					id: recipe.id,
+					image_url: recipe.image_url,
+					title: recipe.title,
+					publisher: recipe.publisher,
+				};
+
+				fvaRecipesInfo.push(rec);
+			} else {
+				saveBtn.innerHTML = `<i class="fa-regular fa-heart"></i>`;
+				fvaRecipesInfo.forEach((fav, i) => {
+					if (fav.id === recipe.id) {
+						fvaRecipesInfo.splice(i, 1);
+					}
+				});
+			}
+			isFav = !isFav;
+			this.showFav();
+		});
+	}
+	private showFav() {
+		new Fav().clear();
+		if (fvaRecipesInfo.length === 0) {
+			new Fav().textInfo();
+		} else {
+			fvaRecipesInfo.forEach((fav) => {
+				new Fav().renderResults(fav);
+			});
+		}
 	}
 }
 

@@ -8,11 +8,16 @@ import { result } from './resultsView';
 import { resultsState } from './model';
 import { recipeState } from './model';
 import { FORBIDDEN } from './config';
+import { fvaRecipesInfo } from './recipeView';
 
 const form = document.querySelector('.hero__inputs') as HTMLFormElement;
 const input = document.querySelector('.searching-input') as HTMLInputElement;
 const resultsBox = document.querySelector('.results__box') as HTMLDivElement;
 const resultError = document.querySelector('.results__error') as HTMLTitleElement;
+
+const clearInput = () => {
+	input.value = '';
+};
 
 const getQuery = async () => {
 	try {
@@ -39,6 +44,8 @@ const getQuery = async () => {
 
 const showRecipe = async (id: string | undefined) => {
 	try {
+		let isFav = false;
+		console.log(fvaRecipesInfo);
 		if (!id) return;
 		recipeInfo.clear();
 		const spiner = new Spinner('recipe-info');
@@ -46,13 +53,13 @@ const showRecipe = async (id: string | undefined) => {
 		recipeInfo.showPanel();
 		await getRecipe(id);
 		recipeInfo.clear();
-		recipeInfo.renderResults(recipeState);
+		fvaRecipesInfo.forEach((fav) => {
+			if (fav.id === id) isFav = true;
+		});
+		recipeInfo.renderResults(recipeState, isFav);
 	} catch (err) {
 		if (typeof err === 'string') resultError.textContent = err;
 	}
-};
-const clearInput = () => {
-	input.value = '';
 };
 
 hanldeClick();
