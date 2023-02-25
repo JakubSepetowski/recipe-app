@@ -1,4 +1,4 @@
-# recipe-app 
+# Recipe-app 
 
 application that allows you to search for recipes using forkify appi from https://forkify-api.herokuapp.com/.
 You can search for anything you like and see what ingredients do you need to prepare this meal and aslo you can see how!
@@ -10,10 +10,10 @@ https://jakubsepetowski-recipeapp.netlify.app/
 
 
 
-## features
+## Features
 
 - Searching for recipes
-- Marking recepies as favourite
+- Marking recipes as favourite
 - Deleting recipes from favourites section
 - Saving recipes marked as favourite
 - Rendering favourites by clicking on recipe in favorites section
