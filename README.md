@@ -15,8 +15,9 @@ https://jakubsepetowski-recipeapp.netlify.app/
 - Searching for recipes
 - Marking recipes as favourite
 - Deleting recipes from favourites section
-- Saving recipes marked as favourite
+- Saving recipes marked as favourite (LocalStorage)
 - Rendering favourites by clicking on recipe in favorites section
+- Error handling
 - responsive design
 
 ## Source code
