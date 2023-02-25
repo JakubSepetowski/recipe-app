@@ -7,16 +7,8 @@ You can search for anything you like and see what ingredients do you need to pre
 ## Live Demo
 https://jakubsepetowski-recipeapp.netlify.app/
 
-## Source Code
-```
-git init
-git clone https://github.com/JakubSepetowski/recipe-app.git
-cd recipe-app
-npm i
-npm run dev
-go to http://localhost:5173/
 
-```
+
 
 ## features
 
@@ -29,6 +21,15 @@ go to http://localhost:5173/
 
 ## Source code
 
+```
+git init
+git clone https://github.com/JakubSepetowski/recipe-app.git
+cd recipe-app
+npm i
+npm run dev
+go to http://localhost:5173/
+
+```
 
 ## Screenshots
 
