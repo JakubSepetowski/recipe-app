@@ -8,7 +8,7 @@ import { result } from './resultsView';
 import { resultsState } from './model';
 import { recipeState } from './model';
 import { FORBIDDEN } from './config';
-import { fvaRecipesInfo } from './recipeView';
+import { favRecipesInfo } from './recipeView';
 import { nav } from './nav';
 
 const form = document.querySelector('.hero__inputs') as HTMLFormElement;
@@ -22,7 +22,7 @@ const clearInput = () => {
 
 const deleteRecepie = (Clickedresult: Element) => {
 	const clikedId = (Clickedresult as HTMLDivElement).dataset.id;
-	fvaRecipesInfo.forEach((fav) => {
+	favRecipesInfo.forEach((fav) => {
 		if (fav.id === clikedId) {
 			const panel = document.querySelector(`[data-panelid='${fav.id}']`) as HTMLDivElement;
 			let panelID;
@@ -36,7 +36,6 @@ const deleteRecepie = (Clickedresult: Element) => {
 			recipeInfo.showFav();
 		}
 	});
-
 };
 
 const getId = (e: MouseEvent, className: string, toDelate: boolean = false) => {
@@ -59,6 +58,11 @@ const getQuery = async () => {
 		if (resultsState.length > 0) {
 			resultsState.forEach((res) => {
 				result.renderResults(res);
+				favRecipesInfo.forEach((fav) => {
+					if (res.id === fav.id) {
+						result.changeIcon(fav.id);
+					}
+				});
 			});
 		} else {
 			resultError.textContent = `No recipes found for ${input.value} :C`;
@@ -84,7 +88,7 @@ const showRecipe = async (id: string | undefined) => {
 		await getRecipe(id);
 
 		recipeInfo.clear();
-		fvaRecipesInfo.forEach((fav) => {
+		favRecipesInfo.forEach((fav) => {
 			if (fav.id === id) isFav = true;
 		});
 
@@ -120,3 +124,5 @@ resultsBox.addEventListener('click', (e) => {
 		getId(e, 'recipe');
 	}
 });
+
+recipeInfo.getFavRecepies();

@@ -28,6 +28,7 @@ export const getRecipe = async (id: string) => {
 
 		if (!res.ok) throw new Error(ERROR2);
 		if (data.data.recipe) recipeState = data.data.recipe;
+		
 	} catch (err) {
 		throw err;
 	}

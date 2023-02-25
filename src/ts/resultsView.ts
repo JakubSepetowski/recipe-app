@@ -27,15 +27,17 @@ class Results {
 		this.parentElement.insertAdjacentHTML('beforeend', markup);
 	}
 	changeIcon(id: string) {
-		const results = document.querySelectorAll(`[data-id='${id}']`)!;
-		let result: HTMLDivElement;
+		const results = document.querySelectorAll(`[data-id='${id}']`);
+		let result;
 		results.forEach((res) => {
 			if (res.classList.contains('searching-result')) {
-				result = res as HTMLDivElement;
+				result = res;
 			}
 		});
 
-		const iconBox = result!.querySelector('.result__icon-box')!;
+		if (!result) return;
+		const iconBox = result!.querySelector('.result__icon-box');
+		if (!iconBox) return;
 
 		if (iconBox?.classList.contains('regular')) {
 			iconBox.innerHTML = ` <i  class="fa-solid fa-heart result__icon-info"></i>`;

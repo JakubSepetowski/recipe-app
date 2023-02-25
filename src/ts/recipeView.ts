@@ -2,7 +2,7 @@ import { Recipe } from './types';
 import { Fav } from './favView';
 import { result } from './resultsView';
 
-export const fvaRecipesInfo: Recipe[] = [];
+export const favRecipesInfo: Recipe[] = [];
 
 class RecipeInfo {
 	private parentElement;
@@ -130,25 +130,35 @@ class RecipeInfo {
 	}
 
 	addToFav(recipe: Recipe) {
-		fvaRecipesInfo.push(recipe);
+		favRecipesInfo.push(recipe);
+		localStorage.setItem('FavRecipes', JSON.stringify(favRecipesInfo));
 	}
 	removeFav(recipe: Recipe) {
-		fvaRecipesInfo.forEach((fav, i) => {
+		favRecipesInfo.forEach((fav, i) => {
 			if (fav.id === recipe.id) {
-				fvaRecipesInfo.splice(i, 1);
+				favRecipesInfo.splice(i, 1);
 			}
 		});
+		localStorage.setItem('FavRecipes', JSON.stringify(favRecipesInfo));
 	}
 	showFav() {
 		new Fav().clear();
-		if (fvaRecipesInfo.length === 0) {
+		if (favRecipesInfo.length === 0) {
 			new Fav().textInfo();
 		} else {
-			fvaRecipesInfo.forEach((fav) => {
+			favRecipesInfo.forEach((fav) => {
 				new Fav().renderResults(fav);
 			});
 		}
-		
+	}
+	getFavRecepies() {
+		const data = JSON.parse(localStorage.getItem('FavRecipes')!);
+		if (!data) return;
+
+		data.forEach((recipe: Recipe) => {
+			favRecipesInfo.push(recipe);
+		});
+		this.showFav()
 	}
 }
 
