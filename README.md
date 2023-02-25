@@ -1,0 +1,30 @@
+# recipe-app 
+
+application that allows you to search for recipes using forkify appi from https://forkify-api.herokuapp.com/.
+You can search for anything you like and see what ingredients do you need to prepare this meal and aslo you can see how!
+
+## features
+
+- Searching for recipes
+- Marking recepies as favourite
+- Deleting recipes from favourites section
+- Saving recipes marked as favourite
+- Rendering favourites by clicking on recipe in favorites section
+- responsive design
+
+## Screenshots
+
+### Mobile view
+
+![image](https://user-images.githubusercontent.com/114868887/221372742-eee4e8ca-2066-41b6-93c4-adae275bebd5.png)
+![image](https://user-images.githubusercontent.com/114868887/221372752-431f0244-0e5f-485c-9740-ed0873641f8c.png)
+![image](https://user-images.githubusercontent.com/114868887/221372765-6c989b96-a678-489e-9ef2-0e0536176ef9.png)
+![image](https://user-images.githubusercontent.com/114868887/221372924-37cc745f-33d1-4f47-a222-c10fd20bcf03.png)
+
+### Large screen view
+
+![image](https://user-images.githubusercontent.com/114868887/221372972-d8685a3f-0193-44ae-89b5-554917e66a45.png)
+![image](https://user-images.githubusercontent.com/114868887/221372985-c289c5a1-6f39-43a7-805f-bc34cd0a58fd.png)
+![image](https://user-images.githubusercontent.com/114868887/221372988-2df4c1eb-00fd-4924-967f-1828edbf8c1d.png)
+
+
