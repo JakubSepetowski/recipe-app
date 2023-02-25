@@ -10,7 +10,7 @@ class Results {
 	}
 	renderResults(recipe: Recipe) {
 		const markup = `
-        <div data-id="${recipe.id}" class="result">
+        <div data-id="${recipe.id}" class="result searching-result">
             <div class="result__box-left">
               <img class="result__img" src='${recipe.image_url}' alt="${recipe.title}">
               <div class="result__box-text">
@@ -27,16 +27,24 @@ class Results {
 		this.parentElement.insertAdjacentHTML('beforeend', markup);
 	}
 	changeIcon(id: string) {
-		console.log(id);
-		const result = document.querySelector(`[data-id='${id}']`)!;
-		const iconBox = result.querySelector('.result__icon-box')!;
+		const results = document.querySelectorAll(`[data-id='${id}']`)!;
+		let result: HTMLDivElement;
+		results.forEach((res) => {
+			if (res.classList.contains('searching-result')) {
+				result = res as HTMLDivElement;
+				console.log(res);
+			}
+		});
+
+		const iconBox = result!.querySelector('.result__icon-box')!;
+
 		if (iconBox?.classList.contains('regular')) {
 			iconBox.innerHTML = ` <i  class="fa-solid fa-heart result__icon-info"></i>`;
-      iconBox.classList.remove("regular")
+			iconBox.classList.remove('regular');
 		} else {
-      console.log("a");
+			console.log('a');
 			iconBox.innerHTML = ` <i  class="fa-regular fa-heart result__icon-info"></i>`;
-      iconBox.classList.add("regular")
+			iconBox.classList.add('regular');
 		}
 	}
 }
