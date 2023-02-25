@@ -15,7 +15,7 @@ You can search for anything you like and see what ingredients do you need to pre
 ## Screenshots
 
 ### Mobile view
-<div align="center>
+<div align="center">
 ![image](https://user-images.githubusercontent.com/114868887/221372742-eee4e8ca-2066-41b6-93c4-adae275bebd5.png)
 ![image](https://user-images.githubusercontent.com/114868887/221372752-431f0244-0e5f-485c-9740-ed0873641f8c.png)
 ![image](https://user-images.githubusercontent.com/114868887/221372765-6c989b96-a678-489e-9ef2-0e0536176ef9.png)
