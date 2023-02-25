@@ -20,9 +20,31 @@ const clearInput = () => {
 	input.value = '';
 };
 
-const getId = (e: MouseEvent, className: string) => {
-	const result = (e.target as HTMLElement).closest(`.${className}`);
-	if (result) showRecipe((result as HTMLDivElement).dataset.id);
+const deleteRecepie = (Clickedresult: Element) => {
+	const clikedId = (Clickedresult as HTMLDivElement).dataset.id;
+	fvaRecipesInfo.forEach((fav) => {
+		if (fav.id === clikedId) {
+			const panel = document.querySelector(`[data-panelid='${fav.id}']`) as HTMLDivElement;
+			let panelID;
+			if (panel) panelID = panel.dataset.panelid;
+
+			if (panelID && panelID === fav.id) {
+				showRecipe(fav.id);
+			}
+			result.changeIcon(fav.id);
+			recipeInfo.removeFav(fav);
+			recipeInfo.showFav();
+		}
+	});
+
+};
+
+const getId = (e: MouseEvent, className: string, toDelate: boolean = false) => {
+	const Clickedresult = (e.target as HTMLElement).closest(`.${className}`);
+	if (Clickedresult && !toDelate) showRecipe((Clickedresult as HTMLDivElement).dataset.id);
+	if (Clickedresult && toDelate) {
+		deleteRecepie(Clickedresult);
+	}
 };
 
 const getQuery = async () => {
@@ -51,13 +73,16 @@ const getQuery = async () => {
 const showRecipe = async (id: string | undefined) => {
 	try {
 		let isFav = false;
-		console.log(fvaRecipesInfo);
 		if (!id) return;
+
 		recipeInfo.clear();
+
 		const spiner = new Spinner('recipe-info');
 		spiner.renderSpinner();
+
 		recipeInfo.showPanel();
 		await getRecipe(id);
+
 		recipeInfo.clear();
 		fvaRecipesInfo.forEach((fav) => {
 			if (fav.id === id) isFav = true;
@@ -89,5 +114,9 @@ resultsBox.addEventListener('click', (e) => {
 });
 
 (nav as HTMLDivElement).addEventListener('click', (e) => {
-	getId(e, 'recipe');
+	if ((e.target as HTMLElement).classList[0] === 'recipe__btn') {
+		getId(e, 'recipe', true);
+	} else {
+		getId(e, 'recipe');
+	}
 });

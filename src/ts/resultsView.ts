@@ -32,7 +32,6 @@ class Results {
 		results.forEach((res) => {
 			if (res.classList.contains('searching-result')) {
 				result = res as HTMLDivElement;
-				console.log(res);
 			}
 		});
 
@@ -42,7 +41,6 @@ class Results {
 			iconBox.innerHTML = ` <i  class="fa-solid fa-heart result__icon-info"></i>`;
 			iconBox.classList.remove('regular');
 		} else {
-			console.log('a');
 			iconBox.innerHTML = ` <i  class="fa-regular fa-heart result__icon-info"></i>`;
 			iconBox.classList.add('regular');
 		}

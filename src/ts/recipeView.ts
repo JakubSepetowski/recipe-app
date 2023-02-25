@@ -3,9 +3,10 @@ import { Fav } from './favView';
 import { result } from './resultsView';
 
 export const fvaRecipesInfo: Recipe[] = [];
-export let test = false;
+
 class RecipeInfo {
 	private parentElement;
+	private Fav = false;
 
 	constructor() {
 		this.parentElement = document.querySelector('.recipe-info') as HTMLDivElement;
@@ -36,10 +37,10 @@ class RecipeInfo {
 		});
 		return list?.join('');
 	}
-	renderResults(recipe: Recipe, isFav = false) {
+	renderResults(recipe: Recipe, isFav = this.Fav) {
 		const list = this.generateList(recipe);
 		const markup = `
-        <div class="recipe-info__top">
+        <div data-panelid="${recipe.id}" class="recipe-info__top">
         <img class="recipe-info__img" src="${recipe.image_url}" alt="${recipe.title}">
         <div class="recipe-info__shadow">
         <button class="btn recipe-info__back"><i class="fa-solid fa-right-to-bracket"></i></button>
@@ -98,31 +99,47 @@ class RecipeInfo {
 		const saveBtn = document.querySelector('.recipe-info__btn') as HTMLButtonElement;
 		saveBtn.addEventListener('click', () => {
 			result.changeIcon(recipe.id);
-			if (!isFav) {
-				saveBtn.innerHTML = `<i class="fa-solid fa-heart"></i>`;
+			isFav = this.mangeFavData(recipe, isFav);
 
-				const rec: Recipe = {
-					id: recipe.id,
-					image_url: recipe.image_url,
-					title: recipe.title,
-					publisher: recipe.publisher,
-					isFav: !isFav,
-				};
-
-				fvaRecipesInfo.push(rec);
-			} else {
-				saveBtn.innerHTML = `<i class="fa-regular fa-heart"></i>`;
-				fvaRecipesInfo.forEach((fav, i) => {
-					if (fav.id === recipe.id) {
-						fvaRecipesInfo.splice(i, 1);
-					}
-				});
-			}
-			isFav = !isFav;
 			this.showFav();
 		});
 	}
-	private showFav() {
+	mangeFavData(recipe: Recipe, isFav: boolean) {
+		if (!isFav) {
+			this.chnageIcon(isFav);
+			const rec: Recipe = {
+				id: recipe.id,
+				image_url: recipe.image_url,
+				title: recipe.title,
+				publisher: recipe.publisher,
+				isFav: !isFav,
+			};
+
+			this.addToFav(rec);
+			return true;
+		} else {
+			this.chnageIcon(isFav);
+			this.removeFav(recipe);
+			return false;
+		}
+	}
+	chnageIcon(isFav: boolean) {
+		const saveBtn = document.querySelector('.recipe-info__btn') as HTMLButtonElement;
+		if (isFav) saveBtn.innerHTML = `<i class="fa-regular fa-heart"></i>`;
+		else saveBtn.innerHTML = `<i class="fa-solid fa-heart"></i>`;
+	}
+
+	addToFav(recipe: Recipe) {
+		fvaRecipesInfo.push(recipe);
+	}
+	removeFav(recipe: Recipe) {
+		fvaRecipesInfo.forEach((fav, i) => {
+			if (fav.id === recipe.id) {
+				fvaRecipesInfo.splice(i, 1);
+			}
+		});
+	}
+	showFav() {
 		new Fav().clear();
 		if (fvaRecipesInfo.length === 0) {
 			new Fav().textInfo();
@@ -131,6 +148,7 @@ class RecipeInfo {
 				new Fav().renderResults(fav);
 			});
 		}
+		
 	}
 }
 
