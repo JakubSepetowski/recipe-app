@@ -3,6 +3,9 @@
 application that allows you to search for recipes using forkify appi from https://forkify-api.herokuapp.com/.
 You can search for anything you like and see what ingredients do you need to prepare this meal and aslo you can see how!
 
+## Live Demo
+https://jakubsepetowski-recipeapp.netlify.app/
+
 ## features
 
 - Searching for recipes
