@@ -47,7 +47,7 @@
 
 	&__img {
 		width: 80px;
-		height: 60px;
+		height: 70px;
 		object-fit: cover;
 		border-radius: 12px 0 0 12px;
 	}
@@ -92,7 +92,7 @@
 	.result {
 		flex-direction: column;
 		width: 200px;
-		height: 200px;
+		height: 220px;
 		z-index: 100;
 		&__title {
 			font-size: 1.6rem;
@@ -123,6 +123,15 @@
 			margin-right: 0px;
 			margin-bottom: 15px;
 			color: c.$blue;
+		}
+	}
+}
+@media (min-width: 1000px) {
+	.result {
+		width: 225px;
+
+		&__img {
+			width: 250px;
 		}
 	}
 }
