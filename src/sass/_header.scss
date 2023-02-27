@@ -10,7 +10,7 @@
 		background-image: url('../img/hero-small.jpg');
 		background-size: cover;
 		background-position: 50% 50%;
-		box-shadow: 0 0 5px black;
+		box-shadow: 0 0 5px c.$black;
 		&__shadow {
 			position: absolute;
 			width: 100%;
@@ -51,16 +51,16 @@
 			&::after {
 				position: absolute;
 				content: '	';
-				width: 98%;
+				width: 97%;
 				height: 100%;
 				border-radius: 15px;
-				box-shadow: 0 0 5px black;
+				box-shadow: 0 0 5px c.$black;
 			}
 		}
 		.sendining-input {
 			border-radius: 0 15px 15px 0;
 			position: relative;
-			left: -5px;
+			left: -8px;
 			background-color: c.$blue;
 			color: c.$white;
 			transition: transform 0.3s;
@@ -100,7 +100,7 @@
 			}
 			&__inputs {
 				&::after {
-					width: 99%;
+					width: 98%;
 				}
 			}
 			.sendining-input {

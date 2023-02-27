@@ -57,7 +57,7 @@
 		max-width: 450px;
 		background-color: c.$fadedWhite;
 		z-index: 500;
-		box-shadow: 0 0 5px black;
+		box-shadow: 0 0 5px c.$black;
 		transition: transform 0.8s;
 
 		&--active {
@@ -78,7 +78,7 @@
 			width: 100%;
 			min-height: 25vh;
 			color: c.$white;
-			box-shadow: 0 0 05px black;
+			box-shadow: 0 0 05px c.$black;
 		}
 		&__title {
 			position: relative;
@@ -91,7 +91,7 @@
 				width: 100%;
 				height: 2px;
 				content: '';
-				background-color: #fff;
+				background-color: c.$white;
 			}
 		}
 		&__text {

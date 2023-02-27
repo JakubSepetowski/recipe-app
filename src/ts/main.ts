@@ -65,7 +65,7 @@ const getQuery = async () => {
 				});
 			});
 		} else {
-			resultError.textContent = `No recipes found for ${input.value} :C`;
+			resultError.textContent = `No recipes found for ${input.value}`;
 		}
 	} catch (err) {
 		if (typeof err === 'string') resultError.textContent = err;
@@ -102,7 +102,11 @@ hanldeClick();
 
 form?.addEventListener('submit', (e) => {
 	e.preventDefault();
-	getQuery();
+	if (input.value === '') {
+		resultError.textContent = 'This field cannot be empty';
+	} else {
+		getQuery();
+	}
 });
 
 input.addEventListener('input', () => {

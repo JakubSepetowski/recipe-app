@@ -12,7 +12,7 @@
 	flex-direction: column;
 	padding: 2em;
 	&__error {
-		color: red;
+		color: c.$red;
 		margin-bottom: 10px;
 	}
 	&__box {
@@ -34,7 +34,7 @@
 	margin-top: 20px;
 	width: 100%;
 	max-width: 400px;
-	background-color: #fff;
+	background-color: c.$white;
 	min-height: 60px;
 	border-radius: 12px;
 	border: 1px solid c.$blue;
